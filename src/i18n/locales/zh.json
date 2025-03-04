@@ -1,0 +1,59 @@
+{
+  "chat": {
+    "title": "对话区",
+    "inputPlaceholder": "输入您的问题...",
+    "sendButton": "发送",
+    "welcomeMessage": "您好！我是AI客服助手，请问有什么可以帮您？"
+  },
+  "knowledgeBase": {
+    "title": "知识库参考",
+    "faq": {
+      "title": "常见问题解答",
+      "description": "点击查看相关文档和解决方案"
+    },
+    "manual": {
+      "title": "产品手册",
+      "description": "产品使用说明和功能介绍"
+    }
+  },
+  "quickReplies": {
+    "title": "快捷回复",
+    "welcome": "👋 欢迎问候",
+    "orderStatus": "📦 查询订单状态",
+    "payment": "💳 支付相关问题",
+    "shipping": "🚚 物流配送查询"
+  },
+  "login": {
+    "title": "登录到系统",
+    "subtitle": "请输入您的账号信息",
+    "email": "邮箱",
+    "emailPlaceholder": "请输入邮箱",
+    "password": "密码",
+    "passwordPlaceholder": "请输入密码",
+    "submitButton": "登录"
+  },
+  "admin": {
+    "title": "管理后台",
+    "nav": {
+      "statistics": "数据统计",
+      "userManagement": "用户管理",
+      "settings": "系统设置"
+    },
+    "stats": {
+      "totalUsers": "总用户数",
+      "todayChats": "今日对话",
+      "responseTime": "平均响应时间",
+      "satisfaction": "满意度"
+    },
+    "recentChats": {
+      "title": "最近对话",
+      "user": "用户{{id}}",
+      "viewDetails": "查看详情"
+    }
+  },
+  "settings": "设置",
+  "logout": "退出登录",
+  "header": {
+    "title": "客服支持系统"
+  }
+}
