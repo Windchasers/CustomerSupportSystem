@@ -3,7 +3,12 @@
     "title": "Chat",
     "inputPlaceholder": "Enter your question...",
     "sendButton": "Send",
-    "welcomeMessage": "Hello! I'm an AI customer service assistant. How can I help you?"
+    "welcomeMessage": "Hello! I'm an AI customer service assistant. How can I help you?",
+    "noKnowledgeBase": "No relevant knowledge base content available",
+    "quickReply": {
+      "greeting": "Hello, how can I help you?",
+      "thanks": "Thank you for your feedback. We will continue to improve our service."
+    }
   },
   "knowledgeBase": {
     "title": "Knowledge Base",
@@ -47,13 +52,7 @@
     },
     "recentChats": {
       "title": "Recent Chats",
-      "user": "User {{id}}",
-      "viewDetails": "View Details"
+      "user": "User {{id}}"
     }
-  },
-  "settings": "Settings",
-  "logout": "Logout",
-  "header": {
-    "title": "Customer Support"
   }
 }

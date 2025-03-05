@@ -4,6 +4,13 @@ import { useTranslation } from "@/i18n";
 import { useLanguage } from "@/i18n/context";
 import Image from "next/image";
 import { useEffect } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function Header() {
   const { language, setLanguage } = useLanguage();
@@ -37,14 +44,15 @@ export function Header() {
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <nav className="flex items-center space-x-6">
             <div className="relative">
-              <select
-                value={language}
-                onChange={(e) => handleLanguageChange(e.target.value as "en" | "zh")}
-                className="h-9 w-[70px] rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-1 focus:ring-ring"
-              >
-                <option value="en">EN</option>
-                <option value="zh">中文</option>
-              </select>
+              <Select value={language} onValueChange={handleLanguageChange}>
+                <SelectTrigger className="w-[70px]">
+                  <SelectValue placeholder="Select language" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="en">EN</SelectItem>
+                  <SelectItem value="zh">中文</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <button
               className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:text-accent-foreground"

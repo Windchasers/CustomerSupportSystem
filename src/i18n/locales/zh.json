@@ -3,7 +3,12 @@
     "title": "对话区",
     "inputPlaceholder": "输入您的问题...",
     "sendButton": "发送",
-    "welcomeMessage": "您好！我是AI客服助手，请问有什么可以帮您？"
+    "welcomeMessage": "您好！我是AI客服助手，请问有什么可以帮您？",
+    "noKnowledgeBase": "暂无相关知识库内容",
+    "quickReply": {
+      "greeting": "您好，请问有什么可以帮您？",
+      "thanks": "感谢您的反馈，我们会继续改进服务。"
+    }
   },
   "knowledgeBase": {
     "title": "知识库参考",
@@ -47,13 +52,7 @@
     },
     "recentChats": {
       "title": "最近对话",
-      "user": "用户{{id}}",
-      "viewDetails": "查看详情"
+      "user": "用户{{id}}"
     }
-  },
-  "settings": "设置",
-  "logout": "退出登录",
-  "header": {
-    "title": "客服支持系统"
   }
 }
