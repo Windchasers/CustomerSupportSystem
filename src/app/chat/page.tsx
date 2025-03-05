@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageList, Message } from '@/components/ui/chat/message-list';
 import { MessageInput } from '@/components/ui/chat/message-input';
 import { Sidebar } from '@/components/ui/chat/sidebar';
@@ -10,7 +10,8 @@ import { useChat } from 'ai/react';
 
 export default function ChatPage() {
   const { t } = useTranslation();
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
+  const [conversationId, setConversationId] = useState<string | null>(null);
+  const { messages, setMessages, input, handleInputChange, handleSubmit } = useChat({
     api: '/api/chat',
     initialMessages: [{
       id: 'welcome',
@@ -18,6 +19,26 @@ export default function ChatPage() {
       content: t('chat.welcomeMessage'),
     }],
   });
+
+  useEffect(() => {
+    const loadChatHistory = async () => {
+      if (conversationId) {
+        try {
+          const response = await fetch(`/api/chat/history?conversationId=${conversationId}`);
+          const data = await response.json();
+          
+          if (response.ok && data.messages) {
+            setMessages(data.messages);
+          }
+        } catch (error) {
+          console.error('加载聊天历史失败:', error);
+        }
+      }
+    };
+
+    loadChatHistory();
+  }, [conversationId, setMessages]);
+
 
   const handleSendMessage = (content: string) => {
     handleSubmit(new Event('submit'), { data: { content, userId: 'test-user-id' } });

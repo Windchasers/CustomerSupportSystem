@@ -38,7 +38,7 @@ export function MessageList({ messages }: MessageListProps) {
           >
             <div className="text-sm">{message.content}</div>
             <div className="text-xs mt-1 opacity-70">
-              {message.createdAt ? new Date(message.createdAt).toLocaleTimeString() : new Date().toLocaleTimeString()}
+              {message.createdAt ? message.createdAt.toLocaleTimeString() : null}
             </div>
           </div>
         </div>

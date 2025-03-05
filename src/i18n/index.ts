@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from './context';
+import enTranslations from './locales/en.json';
+import zhTranslations from './locales/zh.json';
 
 export type Language = 'en' | 'zh';
 
@@ -10,11 +12,7 @@ export function useTranslation() {
   const [translations, setTranslations] = useState<any>(null);
 
   useEffect(() => {
-    const loadTranslations = async () => {
-      const response = await import(`./locales/${language}.json`);
-      setTranslations(response.default);
-    };
-    loadTranslations();
+    setTranslations(language === 'en' ? enTranslations : zhTranslations);
   }, [language]);
 
   const t = (key: string) => {

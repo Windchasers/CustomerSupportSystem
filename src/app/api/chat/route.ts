@@ -1,5 +1,6 @@
 import { OpenAI } from 'openai';
 import { StreamingTextResponse } from 'ai';
+import { createConversationInDB, addMessageToDB } from '@/lib/db';
 
 // 初始化OpenAI客户端
 const openai = new OpenAI({
@@ -24,7 +25,14 @@ async function buildAugmentedContext(messages: any[], fileContext: any) {
 
 export async function POST(req: Request) {
   try {
-    const { messages, fileContext } = await req.json();
+    const { messages, fileContext, userId } = await req.json();
+    
+    // 创建或获取会话
+    let conversationId = messages[0]?.conversationId;
+    if (!conversationId) {
+      const conversation = await createConversationInDB(userId);
+      conversationId = conversation.id;
+    }
 
     // 验证必要的环境变量
     if (!process.env.OPENAI_API_KEY) {
@@ -47,8 +55,25 @@ export async function POST(req: Request) {
       stream: true,
     });
 
+    // 保存用户消息到数据库
+    const userMessage = messages[messages.length - 1];
+    await addMessageToDB(conversationId, userMessage.role, userMessage.content);
+
     // 构建SSE响应
-    return new StreamingTextResponse(stream);
+    const response = new StreamingTextResponse(stream);
+
+    // 保存助手回复到数据库
+    stream.on('data', async (chunk) => {
+      const text = chunk.toString();
+      if (text.startsWith('data: ')) {
+        const content = text.slice(6);
+        if (content !== '[DONE]') {
+          await addMessageToDB(conversationId, 'assistant', content);
+        }
+      }
+    });
+
+    return response;
   } catch (error: any) {
     console.error('Chat API error:', error);
     return new Response(
